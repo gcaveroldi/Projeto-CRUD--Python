@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Create{% endblock %}
+{% block content %}
+<h1>Create New Item</h1>
+<form method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ request.form.name }}" required>
+    {% for error in form.name.errors %}
+    <span class="error">{{ error }}</span>
+    {% endfor %}
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required>{{ request.form.description }}</textarea>
+    {% for error in form.description.errors %}
+    <span class="error">{{ error }}</span>
+    {% endfor %}
+    <button type="submit">Create</button>
+</form>
+<a href="{{ url_for('index') }}">Back</a>
+{% endblock %}
